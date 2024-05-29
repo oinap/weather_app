@@ -9,15 +9,16 @@ const String temperatureKey = 'temp';
 
 @JsonSerializable()
 class WeatherModel with EntityConvertible<WeatherModel, WeatherEntity> {
-  final Map<String, dynamic> weather;
   final Map<String, dynamic> main;
 
-  WeatherModel({required this.weather, required this.main});
+  WeatherModel({required this.main});
 
   @override
   WeatherEntity toEntity() {
-    return WeatherEntity(
-        weather: weather[weatherDescriptionKey],
-        temperature: main[temperatureKey]);
+    return WeatherEntity(temperature: main[temperatureKey]);
+  }
+
+  factory WeatherModel.fromJson(Map<String, dynamic> json) {
+    return _$WeatherModelFromJson(json);
   }
 }

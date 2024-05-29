@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:doumo_test_task/src/core/constants/network_constants.dart';
 import 'package:doumo_test_task/src/core/constants/url_constants.dart';
+import 'package:doumo_test_task/src/core/exceptions/network_exception.dart';
 import 'package:doumo_test_task/src/data/data_sources/remote/city/cities_remote_data_source.dart';
 import 'package:doumo_test_task/src/data/models/city/city_model.dart';
 
@@ -41,14 +42,21 @@ class CityRemoteDataSourceImpl implements CityRemoteDataSource {
       String authToken = await getAuthToken();
       Response response = await _dio.get(url,
           options: Options(headers: {'Authorization': 'Bearer $authToken'}),
-          queryParameters: {'keyword': cityQuery, 'max': 10});
+          queryParameters: {'keyword': cityQuery, 'max': 5});
 
-      // extract list of cities from the response
-      List<dynamic> entries = response.data['data'];
-      List<CityModel> cities = entries.map((entry) {
-        return CityModel.fromJson(entry);
-      }).toList();
-      return cities;
+      // if matching cities were found, extract list of cities from the response
+      if (response.data['data'] != null) {
+        List<dynamic> entries = response.data['data'];
+
+        List<CityModel> cities = entries.map((entry) {
+          return CityModel.fromJson(entry);
+        }).toList();
+        return cities;
+      }
+      // if no matching cities were found, return an empty list
+      else {
+        return List<CityModel>.empty();
+      }
     } on DioException catch (_) {
       rethrow;
     }

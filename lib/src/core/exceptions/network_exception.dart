@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:doumo_test_task/src/core/models/city_network_error.dart';
+import 'package:doumo_test_task/src/core/models/network_error.dart';
 import 'package:equatable/equatable.dart';
 
 ///
@@ -26,12 +26,13 @@ import 'package:equatable/equatable.dart';
 /// }
 /// ```
 class NetworkException extends Equatable implements Exception {
-  late final int? statusCode;
-  late final String message;
+  final int? statusCode;
+  final String message;
+  const NetworkException({required this.message, required this.statusCode});
 
-  NetworkException.fromDioException(DioException dioException) {
-    statusCode = dioException.response?.statusCode;
-
+  static NetworkException fromDioException(DioException dioException) {
+    int? statusCode = dioException.response?.statusCode;
+    String message;
     switch (dioException.type) {
       case DioExceptionType.cancel:
         message = 'Request to API server was cancelled';
@@ -61,15 +62,24 @@ class NetworkException extends Equatable implements Exception {
         break;
 
       case DioExceptionType.badResponse:
-        final model = CityNetworkErrorModel.fromJson(
+        final model = NetworkErrorModel.fromJson(
             dioException.response?.data as Map<String, dynamic>);
-        message = model.detail ?? 'Unexpected bad response';
+        if (model.detail != null) {
+          message = model.detail!;
+        } else if (model.message != null) {
+          message = model.message!;
+        } else {
+          message = 'Unexpected bad response';
+        }
+
         break;
       case DioExceptionType.unknown:
         message = 'Unexpected error occurred';
         break;
     }
+    return NetworkException(message: message, statusCode: statusCode);
   }
+
   @override
   List<Object?> get props => [message, statusCode];
 }

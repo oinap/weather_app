@@ -9,12 +9,12 @@ part of 'city_model.dart';
 CityModel _$CityModelFromJson(Map<String, dynamic> json) => CityModel(
       type: json['type'] as String?,
       subType: json['subType'] as String?,
-      name: json['name'] as String?,
+      name: json['name'] as String,
       iataCode: json['iataCode'] as String?,
       address: (json['address'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
-      geoCode: (json['geoCode'] as Map<String, dynamic>?)?.map(
+      geoCode: (json['geoCode'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(k, (e as num).toDouble()),
       ),
     );

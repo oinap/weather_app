@@ -1,6 +1,6 @@
 class CityEntity {
-  final String? name;
-  final Map<String, double>? geoCode;
+  final String name;
+  final Map<String, double> geoCode;
 
-  CityEntity({this.name, this.geoCode});
+  CityEntity({required this.name, required this.geoCode});
 }

@@ -9,18 +9,18 @@ class CityModel extends Equatable
     with EntityConvertible<CityModel, CityEntity> {
   final String? type;
   final String? subType;
-  final String? name;
+  final String name;
   final String? iataCode;
   final Map<String, String>? address;
-  final Map<String, double>? geoCode;
+  final Map<String, double> geoCode;
 
   CityModel(
       {this.type,
       this.subType,
-      this.name,
+      required this.name,
       this.iataCode,
       this.address,
-      this.geoCode});
+      required this.geoCode});
 
   factory CityModel.fromJson(Map<String, dynamic> json) {
     return _$CityModelFromJson(json);

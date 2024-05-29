@@ -1,21 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'city_network_error.dart';
+part of 'network_error.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CityNetworkErrorModel _$CityNetworkErrorModelFromJson(
-        Map<String, dynamic> json) =>
-    CityNetworkErrorModel(
+NetworkErrorModel _$NetworkErrorModelFromJson(Map<String, dynamic> json) =>
+    NetworkErrorModel(
       code: (json['code'] as num?)?.toInt(),
       detail: json['detail'] as String?,
+      cod: (json['cod'] as num?)?.toInt(),
+      message: json['message'] as String?,
     );
 
-Map<String, dynamic> _$CityNetworkErrorModelToJson(
-        CityNetworkErrorModel instance) =>
+Map<String, dynamic> _$NetworkErrorModelToJson(NetworkErrorModel instance) =>
     <String, dynamic>{
       'code': instance.code,
       'detail': instance.detail,
+      'cod': instance.cod,
+      'message': instance.message,
     };
