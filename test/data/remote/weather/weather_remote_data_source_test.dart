@@ -1,11 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:doumo_test_task/src/core/constants/network_constants.dart';
 import 'package:doumo_test_task/src/core/constants/url_constants.dart';
 import 'package:doumo_test_task/src/data/data_sources/remote/weather/weather_remote_data_source_impl.dart';
 import 'package:doumo_test_task/src/data/models/weather/weather_model.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../../../_utils/json_reader.dart';
 import '../../../_utils/mocks/mocks.mocks.dart';

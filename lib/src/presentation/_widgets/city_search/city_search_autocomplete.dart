@@ -1,4 +1,3 @@
-import 'package:doumo_test_task/src/core/constants/app_theme.dart';
 import 'package:doumo_test_task/src/domain/entities/city/city_entity.dart';
 import 'package:doumo_test_task/src/presentation/blocs/weather/weather_bloc.dart';
 import 'package:flutter/material.dart';
@@ -158,7 +157,7 @@ class _CitySearchAutocompleteState extends State<CitySearchAutocomplete> {
                 // and the asynchronous network call
 
                 EasyDebounce.debounce(
-                    'city_search', const Duration(milliseconds: 390), () {
+                    'city_search', const Duration(milliseconds: 500), () {
                   context.read<CityBloc>().add(GetCityEvent(cityQuery: value));
                 });
               } else {

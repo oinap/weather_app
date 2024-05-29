@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:doumo_test_task/src/core/exceptions/network_exception.dart';
 import 'package:doumo_test_task/src/data/data_sources/remote/city/cities_remote_data_source.dart';
-import 'package:doumo_test_task/src/data/data_sources/remote/city/cities_remote_data_source_impl.dart';
 import 'package:doumo_test_task/src/data/models/city/city_model.dart';
 import 'package:doumo_test_task/src/domain/entities/city/city_entity.dart';
 import 'package:doumo_test_task/src/domain/repositories/city/city_repository.dart';
@@ -27,8 +26,16 @@ class CityRepositoryImpl implements CityRepository {
           citiesWithGeoCodes.add(city.toEntity());
         }
       }
+// Remove duplicate cities
+      List<CityEntity> citiesWithUniqueNames = [];
+      Set<String> seenNames = {};
+      for (CityEntity city in citiesWithGeoCodes) {
+        if (seenNames.add(city.name)) {
+          citiesWithUniqueNames.add(city);
+        }
+      }
 
-      return Right(citiesWithGeoCodes);
+      return Right(citiesWithUniqueNames);
     } on DioException catch (e) {
       return Left(NetworkException.fromDioException(e));
     }

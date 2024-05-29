@@ -1,9 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:doumo_test_task/src/core/constants/app_theme.dart';
-import 'package:doumo_test_task/src/data/data_sources/remote/city/cities_remote_data_source_impl.dart';
-import 'package:doumo_test_task/src/data/data_sources/remote/weather/weather_remote_data_source_impl.dart';
-import 'package:doumo_test_task/src/data/models/city/city_model.dart';
-import 'package:doumo_test_task/src/data/models/weather/weather_model.dart';
 import 'package:doumo_test_task/src/presentation/_widgets/city_search/city_search_autocomplete.dart';
 import 'package:doumo_test_task/src/presentation/_widgets/error_display/error_snackbar.dart';
 import 'package:doumo_test_task/src/presentation/_widgets/weather_display/placeholder_icons.dart';
@@ -11,8 +6,6 @@ import 'package:doumo_test_task/src/presentation/_widgets/weather_display/temper
 import 'package:doumo_test_task/src/presentation/_widgets/weather_display/today_date_display.dart';
 import 'package:doumo_test_task/src/presentation/blocs/city/city_bloc.dart';
 import 'package:doumo_test_task/src/presentation/blocs/weather/weather_bloc.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +23,8 @@ class WeatherView extends StatelessWidget {
           listeners: [
             BlocListener<CityBloc, CityState>(
               listener: (context, state) {
-                if (state is CityError) {
+                if (state is CityError &&
+                    state.message != 'Unexpected bad response') {
                   final SnackBar errorSnackBar =
                       ErrorSnackbar(message: state.message);
                   ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);

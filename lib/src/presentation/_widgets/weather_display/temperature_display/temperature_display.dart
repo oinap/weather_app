@@ -3,7 +3,6 @@ import 'package:doumo_test_task/src/presentation/_widgets/weather_display/temper
 import 'package:doumo_test_task/src/presentation/_widgets/weather_display/temperature_display/temperature_widget.dart';
 import 'package:doumo_test_task/src/presentation/blocs/weather/weather_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TemperatureDisplay extends StatelessWidget {

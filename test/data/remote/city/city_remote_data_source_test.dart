@@ -5,7 +5,7 @@ import 'package:doumo_test_task/src/data/data_sources/remote/city/cities_remote_
 import 'package:doumo_test_task/src/data/models/city/city_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../../../_utils/json_reader.dart';
 import '../../../_utils/mocks/mocks.mocks.dart';
