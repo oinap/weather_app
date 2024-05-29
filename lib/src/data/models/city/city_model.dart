@@ -14,7 +14,7 @@ class CityModel extends Equatable
   final Map<String, String>? address;
   final Map<String, double> geoCode;
 
-  CityModel(
+  const CityModel(
       {this.type,
       this.subType,
       required this.name,

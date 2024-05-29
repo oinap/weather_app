@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:doumo_test_task/src/config/router/app_router.dart';
 import 'package:doumo_test_task/src/core/constants/app_theme.dart';
 import 'package:doumo_test_task/src/data/data_sources/remote/city/cities_remote_data_source.dart';
@@ -38,6 +39,7 @@ class MainApp extends StatelessWidget {
           BlocProvider(create: (context) => injector<WeatherBloc>())
         ],
         child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           routerConfig: _appRouter.config(),
         ));

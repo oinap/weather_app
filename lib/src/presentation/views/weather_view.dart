@@ -5,6 +5,7 @@ import 'package:doumo_test_task/src/data/data_sources/remote/weather/weather_rem
 import 'package:doumo_test_task/src/data/models/city/city_model.dart';
 import 'package:doumo_test_task/src/data/models/weather/weather_model.dart';
 import 'package:doumo_test_task/src/presentation/_widgets/city_search/city_search_autocomplete.dart';
+import 'package:doumo_test_task/src/presentation/_widgets/error_display/error_snackbar.dart';
 import 'package:doumo_test_task/src/presentation/_widgets/weather_display/placeholder_icons.dart';
 import 'package:doumo_test_task/src/presentation/_widgets/weather_display/temperature_display/temperature_display.dart';
 import 'package:doumo_test_task/src/presentation/_widgets/weather_display/today_date_display.dart';
@@ -21,25 +22,45 @@ class WeatherView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double spacing = MediaQuery.sizeOf(context).height * 0.05;
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              const CitySearchAutocomplete(),
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.05,
-              ),
-              const TodayDateDisplay(),
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.05,
-              ),
-              const TemperatureDisplay(),
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.1,
-              ),
-              const PlaceholderIcons()
-            ],
+        // Whenever error state is received a snackbar shows the error message
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<CityBloc, CityState>(
+              listener: (context, state) {
+                if (state is CityError) {
+                  final SnackBar errorSnackBar =
+                      ErrorSnackbar(message: state.message);
+                  ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
+                }
+              },
+            ),
+            BlocListener<WeatherBloc, WeatherState>(
+              listener: (context, state) {
+                if (state is WeatherError) {
+                  final SnackBar errorSnackBar =
+                      ErrorSnackbar(message: state.message);
+                  ScaffoldMessenger.of(context).showSnackBar(errorSnackBar);
+                }
+              },
+            ),
+          ],
+          child: Center(
+            child: Column(
+              children: [
+                const CitySearchAutocomplete(),
+                SizedBox(height: spacing),
+                const TodayDateDisplay(),
+                SizedBox(height: spacing),
+                const TemperatureDisplay(),
+                SizedBox(height: spacing * 2),
+                const PlaceholderIcons(),
+
+                // display snackbar if exception is caught
+              ],
+            ),
           ),
         ),
       ),

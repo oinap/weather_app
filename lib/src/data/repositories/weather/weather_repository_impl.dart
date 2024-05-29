@@ -9,7 +9,7 @@ import 'package:fpdart/fpdart.dart';
 class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherRemoteDataSource _weatherRemoteDataSource;
 
-  WeatherRepositoryImpl(this._weatherRemoteDataSource);
+  const WeatherRepositoryImpl(this._weatherRemoteDataSource);
 
   @override
   Future<Either<NetworkException, WeatherEntity>> getWeather(

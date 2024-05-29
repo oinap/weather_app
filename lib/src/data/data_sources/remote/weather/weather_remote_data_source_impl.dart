@@ -5,8 +5,9 @@ import 'package:doumo_test_task/src/data/data_sources/remote/weather/weather_rem
 import 'package:doumo_test_task/src/data/models/weather/weather_model.dart';
 
 class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
-  Dio dio = Dio();
+  final Dio _dio;
 
+  const WeatherRemoteDataSourceImpl(this._dio);
   @override
   Future<WeatherModel> getWeather(
       {required Map<String, double> geoCode}) async {
@@ -16,7 +17,7 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
     double latitude = geoCode['latitude']!;
     double longitude = geoCode['longitude']!;
     try {
-      Response response = await dio.get(url, queryParameters: {
+      Response response = await _dio.get(url, queryParameters: {
         'appid': apiKey,
         'lat': latitude,
         'lon': longitude,

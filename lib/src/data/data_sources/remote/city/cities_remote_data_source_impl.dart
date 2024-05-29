@@ -6,7 +6,9 @@ import 'package:doumo_test_task/src/data/data_sources/remote/city/cities_remote_
 import 'package:doumo_test_task/src/data/models/city/city_model.dart';
 
 class CityRemoteDataSourceImpl implements CityRemoteDataSource {
-  final Dio _dio = Dio();
+  final Dio _dio;
+
+  const CityRemoteDataSourceImpl(this._dio);
 
   /// This method returns OAuth 2.0 token, if successful, to use Amadeus test API.\
   /// It uses [ClientId] and [ClientSecret] associated with the registered app

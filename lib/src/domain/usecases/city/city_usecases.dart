@@ -13,8 +13,7 @@ class CityUsecases {
     // city query must be in range [3,50] defined by the API
     if (cityQuery.length < 3 || cityQuery.length > 50) {
       return const Left(NetworkException(
-          message:
-              'City query term must be longer that three letters and shorter than fifty',
+          message: 'City name must be longer than two letters',
           statusCode: 400));
     }
     return _cityRepository.getCities(cityQuery: cityQuery);

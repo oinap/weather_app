@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "count": 5,
+    "links": {
+      "self": "https://test.api.amadeus.com/v1/reference-data/locations/cities?keyword=PAR&max=5"
+    }
+  },
+  "data": [
+    {
+      "type": "location",
+      "subType": "city",
+      "name": "Ampara",
+      "iataCode": "ADP",
+      "address": {
+        "countryCode": "LK",
+        "stateCode": "LK-ZZZ"
+      },
+      "geoCode": {
+        "latitude": 7.29754,
+        "longitude": 81.68202
+      }
+    },
+    {
+      "type": "location",
+      "subType": "city",
+      "name": "Apartado",
+      "iataCode": "APO",
+      "address": {
+        "countryCode": "CO",
+        "stateCode": "CO-ZZZ"
+      },
+      "geoCode": {
+        "latitude": 7.88299,
+        "longitude": -76.62587
+      }
+    },
+    {
+      "type": "location",
+      "subType": "city",
+      "name": "Alto Parnaiba",
+      "iataCode": "APY",
+      "address": {
+        "countryCode": "BR",
+        "stateCode": "BR-MA"
+      },
+      "geoCode": {}
+    },
+    {
+      "type": "location",
+      "subType": "city",
+      "name": "Avon Park",
+      "iataCode": "AVO",
+      "address": {
+        "countryCode": "US",
+        "stateCode": "US-FL"
+      },
+      "geoCode": {
+        "latitude": 27.59587,
+        "longitude": -81.50619
+      }
+    },
+    {
+      "type": "location",
+      "subType": "city",
+      "name": "Katmai National Park",
+      "iataCode": "BKF",
+      "address": {
+        "countryCode": "US",
+        "stateCode": "US-AK"
+      },
+      "geoCode": {}
+    }
+  ]
+}

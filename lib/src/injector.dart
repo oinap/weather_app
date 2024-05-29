@@ -6,9 +6,9 @@ Future<void> init() async {
   injector
     // data sources
     ..registerLazySingleton<CityRemoteDataSource>(
-        () => CityRemoteDataSourceImpl())
+        () => CityRemoteDataSourceImpl(Dio()))
     ..registerLazySingleton<WeatherRemoteDataSource>(
-        () => WeatherRemoteDataSourceImpl())
+        () => WeatherRemoteDataSourceImpl(Dio()))
 
     // repositories
     ..registerLazySingleton<CityRepository>(

@@ -10,7 +10,7 @@ import 'package:fpdart/fpdart.dart';
 class CityRepositoryImpl implements CityRepository {
   final CityRemoteDataSource _cityRemoteDataSource;
 
-  CityRepositoryImpl(this._cityRemoteDataSource);
+  const CityRepositoryImpl(this._cityRemoteDataSource);
 
   /// retrieves cities, but only saves those with non empty geoCodes
   @override
